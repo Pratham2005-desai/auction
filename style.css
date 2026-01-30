@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.highlight {
+    border: 2px solid #38bdf8;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 40%;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.sold-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.export-btn {
+    background: #22c55e;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #334155;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #334155;
+    margin: 5px auto;
+    padding: 8px;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.sold-banner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.sold-banner.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.sold-banner h1 {
+    font-size: 48px;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+.sold-banner p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding: 20px 10px;
+    background: #0b1220;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #1e293b;
+}
+
+.footer p {
+    margin: 5px 0;
+}

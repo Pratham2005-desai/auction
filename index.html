@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Auction System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>🏆 Live Player Auction</h1>
+
+    <!-- Team Setup -->
+<div class="card">
+    <h2>Register Teams</h2>
+    <input type="text" id="teamInput" placeholder="Enter Team Name">
+    <button onclick="addTeam()">Add Team</button>
+
+    <h3>Registered Teams:</h3>
+    <ul id="teamList"></ul>
+</div>
+
+
+    <!-- Player Setup -->
+    <div class="card">
+        <h2>Start New Player Auction</h2>
+        <input type="text" id="playerName" placeholder="Enter Player Name">
+        <input type="number" id="basePrice" placeholder="Base Price">
+        <button onclick="startAuction()">Start Auction</button>
+    </div>
+
+    <!-- Current Auction -->
+    <div class="card highlight">
+        <h2>Current Player</h2>
+        <p><strong>Name:</strong> <span id="currentPlayer">None</span></p>
+        <p><strong>Base Price:</strong> points<span id="currentBase">0</span></p>
+        <p><strong>Highest Bid:</strong> points<span id="highestBid">0</span></p>
+        <p><strong>Leading Team:</strong> <span id="leadingTeam">None</span></p>
+    </div>
+
+    <!-- Bidding Panel -->
+    <div class="card">
+        <h2>Place Bid</h2>
+        <select id="teamSelect">
+            <option value="">Select Team</option>
+        </select>
+        <input type="number" id="bidAmount" placeholder="Bid Amount">
+        <button onclick="placeBid()">Place Bid</button>
+        <button class="sold-btn" onclick="markSold()">Mark as SOLD</button>
+    </div>
+
+    <!-- Bid History -->
+    <div class="card">
+        <h2>Bid History</h2>
+        <table id="bidTable">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>Bid Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Sold Players -->
+    <div class="card">
+        <h2>Sold Players</h2>
+        <table id="soldTable">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Sold Team</th>
+                    <th>Final Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- SOLD Banner Popup -->
+    <div id="soldBanner" class="sold-banner">
+        <h1 id="soldText">SOLD!</h1>
+        <p id="soldDetails"></p>
+    </div>
+
+
+    <!-- Export -->
+    <div class="card center">
+        <button class="export-btn" onclick="exportToCSV()">⬇ Export Auction Data to Excel</button>
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer class="footer">
+    <p>🏆 Live Auction System | Built for League Auction</p>
+    <p>© 2026 Auction Panel • TechNova Club</p>
+</footer>
+
+</body>
+</html>
