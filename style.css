@@ -124,3 +124,10 @@ ul li {
 .footer p {
     margin: 5px 0;
 }
+
+.unsold-btn {
+    background: #64748b;
+    color: white;
+}
+
+
