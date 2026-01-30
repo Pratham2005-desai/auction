@@ -5,6 +5,8 @@ let leadingTeam = "";
 let auctionData = [];
 let teams = [];
 let soldPlayers = [];
+let unsoldPlayers = [];
+
 
 
 function startAuction() {
@@ -160,34 +162,63 @@ function markSold() {
     document.getElementById("leadingTeam").innerText = "None";
 }
 
+function markUnsold() {
+    if (!currentPlayer) {
+        alert("No player in auction");
+        return;
+    }
 
-function exportToCSV() {
+    if (leadingTeam !== "None") {
+        const confirmUnsold = confirm("This player has bids. Mark as UNSOLD anyway?");
+        if (!confirmUnsold) return;
+    }
+
+    unsoldPlayers.push({
+        player: currentPlayer,
+        base: currentBasePrice
+    });
+
+    const row = `<tr>
+        <td>${currentPlayer}</td>
+        <td>₹${currentBasePrice}</td>
+    </tr>`;
+    document.querySelector("#unsoldTable tbody").innerHTML += row;
+
+    alert(`${currentPlayer} marked as UNSOLD`);
+
+    // Reset auction
+    currentPlayer = null;
+    highestBid = 0;
+    leadingTeam = "None";
+
+    document.getElementById("currentPlayer").innerText = "None";
+    document.getElementById("currentBase").innerText = "0";
+    document.getElementByById("highestBid").innerText = "0";
+    document.getElementById("leadingTeam").innerText = "None";
+}
+
+
+ffunction exportToCSV() {
     let csv = "";
 
-    // ================= TEAMS =================
-    csv += "=== REGISTERED TEAMS ===\n";
-    csv += "Team Name\n";
-    teams.forEach(team => {
-        csv += `${team}\n`;
-    });
-
+    // TEAMS
+    csv += "=== REGISTERED TEAMS ===\nTeam Name\n";
+    teams.forEach(team => csv += `${team}\n`);
     csv += "\n";
 
-    // ================= SOLD PLAYERS =================
-    csv += "=== SOLD PLAYERS ===\n";
-    csv += "Player,Sold Team,Final Price\n";
-    soldPlayers.forEach(p => {
-        csv += `${p.player},${p.team},${p.price}\n`;
-    });
-
+    // SOLD PLAYERS
+    csv += "=== SOLD PLAYERS ===\nPlayer,Sold Team,Final Price\n";
+    soldPlayers.forEach(p => csv += `${p.player},${p.team},${p.price}\n`);
     csv += "\n";
 
-    // ================= BID HISTORY =================
-    csv += "=== BID HISTORY ===\n";
-    csv += "Player,Team,Bid Amount\n";
-    auctionData.forEach(row => {
-        csv += `${row.player},${row.team},${row.bid}\n`;
-    });
+    // UNSOLD PLAYERS
+    csv += "=== UNSOLD PLAYERS ===\nPlayer,Base Price\n";
+    unsoldPlayers.forEach(p => csv += `${p.player},${p.base}\n`);
+    csv += "\n";
+
+    // BID HISTORY
+    csv += "=== BID HISTORY ===\nPlayer,Team,Bid Amount\n";
+    auctionData.forEach(row => csv += `${row.player},${row.team},${row.bid}\n`);
 
     const blob = new Blob([csv], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
@@ -197,3 +228,4 @@ function exportToCSV() {
     a.download = "auction_results.csv";
     a.click();
 }
+
